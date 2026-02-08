@@ -1,9 +1,7 @@
-"use client"
-
-import HeroSection from "@/components/hero-section"
-
 export default function Home() {
     return (
-        <HeroSection />
-    )
+        <section className="home-section">
+            <h1 className="text-center text-5xl p-4">home section</h1>
+        </section>
+    );
 }

@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/corentings/chess/v2"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
@@ -61,37 +60,4 @@ func main() {
 	}
 
 
-}
-
-func parsePGNHandler(w http.ResponseWriter, r *http.Request) {
-		// w.Header().Set("Content-Type", "application/json")
-
-		var req struct {
-		PGN string `json:"pgn"`
-	}
-
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		fmt.Fprintf(w, "invalid request")
-		return
-	}
-
-	game := chess.NewGame()
-	if err := game.UnmarshalText([]byte(req.PGN)); err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		fmt.Fprintf(w, "invalid PGN")
-		return
-	}
-
-	moves := []map[string]string{}
-	for i, move := range game.Moves() {
-		moves = append(moves, map[string]string{
-			"moveNumber": fmt.Sprintf("%d", i+1),
-			"notation":   move.String(),
-		})
-	}
-
-	json.NewEncoder(w).Encode(map[string]any{
-		"moves": moves,
-	})
 }
