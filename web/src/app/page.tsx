@@ -10,7 +10,9 @@ export default async function Home() {
     return (
         <div className="min-h-screen text-black bg-[#F9f6F0] space-y-10">
             <Navbar />
+            <div className="mt-10">
             <QuickAnalyzeSection isLoggedIn={!!session} />
+            </div>
         </div>
     );
 }

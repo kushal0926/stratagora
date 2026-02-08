@@ -35,12 +35,13 @@ export default function QuickAnalyzeSection({
                     <TabsList className="grid w-full grid-cols-3 p-0 rounded-xl mb-5">
                         <TabsTrigger
                             value="chesscom"
-                            className="flex items-center justify-center gap-2 rounded-xl data-[state=active]:bg-zinc-400"
+                            className="flex items-center justify-center gap-2 rounded-xl data-[state=active]:bg-[#262E40]  data-[state=active]:text-white"
                         >
                             <Image
                                 src="/chess.svg"
                                 alt=""
                                 width={18}
+            
                                 height={18}
                             />
                             <span className="hidden sm:inline font-bold">
@@ -50,7 +51,7 @@ export default function QuickAnalyzeSection({
 
                         <TabsTrigger
                             value="lichess"
-                            className="flex items-center justify-center gap-2 rounded-lg data-[state=active]:bg-zinc-400"
+                            className="flex items-center justify-center gap-2 rounded-lg data-[state=active]:bg-[#262E40] data-[state=active]:text-white"
                         >
                             <Image
                                 src="lichess.svg"
@@ -65,7 +66,7 @@ export default function QuickAnalyzeSection({
 
                         <TabsTrigger
                             value="pgn"
-                            className="flex items-center justify-center gap-2 rounded-lg data-[state=active]:bg-zinc-400"
+                            className="flex items-center justify-center gap-2 rounded-lg data-[state=active]:bg-[#262E40] data-[state=active]:text-white"
                         >
                             🗁{" "}
                             <span className="hidden sm:inline font-bold">
@@ -90,7 +91,7 @@ export default function QuickAnalyzeSection({
                         </div>
                         <Button
                             onClick={handleAnalyze}
-                            className="w-full p-5"
+                            className="w-full p-5 bg-[#262E40]"
                             disabled={!username || isLoading}
                         >
                             {isLoading ? (
@@ -126,7 +127,7 @@ export default function QuickAnalyzeSection({
                         </div>
                         <Button
                             onClick={handleAnalyze}
-                            className="w-full p-5"
+                            className="w-full p-5 bg-[#262E40]"
                             disabled={!username || isLoading}
                         >
                             {isLoading ? (
@@ -141,7 +142,7 @@ export default function QuickAnalyzeSection({
                                 </>
                             )}
                         </Button>
-                        <p className="text-xs text-gray-500 text-center">
+                        <p className="text-xs text-zinc-700 text-center">
                             No login required • Instant analysis
                         </p>
                     </TabsContent>
@@ -164,15 +165,15 @@ export default function QuickAnalyzeSection({
                             />
                             <label htmlFor="pgn-upload">
                                 <Button
-                                    className="mt-4"
+                                    className="mt-4 bg-[#262E40] rounded"
                                     variant="outline"
                                     asChild
                                 >
-                                    <span>Choose File</span>
+                                    <span className="text-white">Upload File</span>
                                 </Button>
                             </label>
                         </div>
-                        <p className="text-xs text-gray-500 text-center">
+                        <p className="text-xs text-zinc-500 text-center">
                             No login required • Instant analysis
                         </p>
                     </TabsContent>
@@ -181,7 +182,7 @@ export default function QuickAnalyzeSection({
                 {/* Login prompt for saving */}
                 {!isLoggedIn && (
                     <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                        <p className="text-sm text-blue-800 text-center">
+                        <p className="text-sm text-indigo-800 text-center">
                             💡 <strong>Want to save your analysis?</strong>{" "}
                             Create a free account to save games, chat with AI,
                             and track your progress.
