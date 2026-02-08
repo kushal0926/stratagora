@@ -7,7 +7,7 @@ datasource db {
   provider = "postgresql"
 }
 
-// User model - for now just a basic version to check
+// User model
 model User {
   id            String    @id @default(cuid())
   email         String    @unique
@@ -16,8 +16,7 @@ model User {
   image         String?
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @updatedAt @map("updated_at")
-  
-  // Relations
+
   accounts      Account[]
   sessions      Session[]
 
@@ -25,28 +24,27 @@ model User {
   @@index([email])
 }
 
-// Account model - for OAuth providers
+// Account model
 model Account {
-  id                String  @id @default(cuid())
-  userId            String  @map("user_id")
-  type              String
-  provider          String
-  providerAccountId String  @map("provider_account_id")
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.Text
-  session_state     String?
+  id                String   @id @default(cuid())
+  userId            String   @map("user_id")
+  accountId         String   @map("account_id")         
+  providerId        String   @map("provider_id")        
+  accessToken       String?  @map("access_token") @db.Text
+  refreshToken      String?  @map("refresh_token") @db.Text
+  idToken           String?  @map("id_token") @db.Text
+  expiresAt         DateTime? @map("expires_at")
+  password          String?  @db.Text
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([provider, providerAccountId])
+  @@unique([providerId, accountId])
   @@map("accounts")
 }
 
-// Session model - for user sessions
+// Session model 
 model Session {
   id        String   @id @default(cuid())
   userId    String   @map("user_id")
@@ -54,13 +52,15 @@ model Session {
   expiresAt DateTime @map("expires_at")
   ipAddress String?  @map("ip_address")
   userAgent String?  @map("user_agent")
+  createdAt DateTime @default(now()) @map("created_at")  
+  updatedAt DateTime @updatedAt @map("updated_at")        
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("sessions")
 }
 
-// Verification model - for email verification tokens
+// Verification model
 model Verification {
   id         String   @id @default(cuid())
   identifier String
