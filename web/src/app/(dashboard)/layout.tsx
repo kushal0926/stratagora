@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
-import LogoutButton from '@/components/logout-button';
+import Sidebar from '@/components/dashboard/sidebar';
+import DashboardHeader from '@/components/dashboard/header';
 
 export default async function DashboardLayout({
   children,
@@ -17,27 +18,21 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-bold text-gray-900">
-                🎯 Stratagory
-              </h1>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-600">
-                {session.user.name || session.user.email}
-              </span>
-              <LogoutButton />
-            </div>
+    <div className="flex h-screen overflow-hidden bg-[#f9f6f0]">
+      {/* Desktop Sidebar */}
+      <aside className="hidden md:flex">
+        <Sidebar />
+      </aside>
+
+      {/* Main Content */}
+      <div className="flex flex-1 flex-col overflow-hidden">
+        <DashboardHeader />
+        <main className="flex-1 overflow-y-auto">
+          <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+            {children}
           </div>
-        </div>
-      </nav>
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {children}
-      </main>
+        </main>
+      </div>
     </div>
   );
 }
