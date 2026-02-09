@@ -41,7 +41,6 @@ export default function QuickAnalyzeSection({
                                 src="/chess.svg"
                                 alt=""
                                 width={18}
-            
                                 height={18}
                             />
                             <span className="hidden sm:inline font-bold">
@@ -169,7 +168,9 @@ export default function QuickAnalyzeSection({
                                     variant="outline"
                                     asChild
                                 >
-                                    <span className="text-white">Upload File</span>
+                                    <span className="text-white">
+                                        Upload File
+                                    </span>
                                 </Button>
                             </label>
                         </div>
