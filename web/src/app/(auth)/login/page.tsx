@@ -52,18 +52,18 @@ export default function LoginPage() {
     return (
         <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
             {/* left side */}
-            <div className="flex items-center justify-center p-6 bg-[#f9f6f0]">
+            <div className="flex items-center justify-center p-6 bg-cream">
                 <div className="w-full max-w-md">
                     {/* Back to home */}
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 text-sm text-[#121212] hover:text-gray-400 mb-6"
+                        className="inline-flex items-center gap-2 text-sm text-ink hover:text-gray-400 mb-6"
                     >
                         <ArrowLeft className="w-4 h-4" />
                         Back to home
                     </Link>
 
-                    <Card className="border-0 bg-[#121212] text-[#F9f6F0] rounded-md">
+                    <Card className="border-0 bg-ink text-cream rounded-md">
                         <CardHeader className="space-y-1 text-center">
                             <Logo />
                         </CardHeader>
@@ -128,7 +128,7 @@ export default function LoginPage() {
                                     Don&apos;t have an account?{" "}
                                     <Link
                                         href="/signup"
-                                        className="text-[#F9f6F0] hover:underline font-medium"
+                                        className="text-cream hover:underline font-medium"
                                     >
                                         Sign up
                                     </Link>

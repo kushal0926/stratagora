@@ -1,5 +1,3 @@
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
 import {
   Card,
   CardContent,
@@ -12,10 +10,6 @@ import Link from "next/link";
 import { Upload, Globe, Sparkles, TrendingUp } from "lucide-react";
 
 export default async function DashboardPage() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
   return (
     <div className="space-y-8">
       {/* Quick Actions */}
@@ -75,21 +69,27 @@ export default async function DashboardPage() {
       <div className="grid gap-6 md:grid-cols-3">
         <Card>
           <CardHeader>
-            <CardDescription className="text-black font-bold">Total Games</CardDescription>
+            <CardDescription className="text-black font-bold">
+              Total Games
+            </CardDescription>
             <CardTitle className="text-3xl">0</CardTitle>
           </CardHeader>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardDescription className="text-black font-bold">Brilliant Moves</CardDescription>
+            <CardDescription className="text-black font-bold">
+              Brilliant Moves
+            </CardDescription>
             <CardTitle className="text-3xl text-green-600">0</CardTitle>
           </CardHeader>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardDescription className="text-black font-bold">Blunders</CardDescription>
+            <CardDescription className="text-black font-bold">
+              Blunders
+            </CardDescription>
             <CardTitle className="text-3xl text-red-600">0</CardTitle>
           </CardHeader>
         </Card>

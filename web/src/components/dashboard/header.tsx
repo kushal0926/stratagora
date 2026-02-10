@@ -15,7 +15,7 @@ export default async function DashboardHeader() {
     .toUpperCase() || 'U';
 
   return (
-    <header className="sticky top-0 z-40  bg-[#f9f6f0] text-bold">
+    <header className="sticky top-0 z-40  bg-cream text-bold">
       <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Mobile menu button */}
         <MobileSidebar />

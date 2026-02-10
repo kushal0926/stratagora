@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import {
   Menu,
-  X,
   LayoutDashboard,
   ChessKnight,
   Sparkles,

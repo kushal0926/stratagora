@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,8 +8,9 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/go-chi/cors"
 	"github.com/joho/godotenv"
+	custom_middleware "github.com/kushal0926/stratagora/backend/internal/custom_middleare"
+	"github.com/kushal0926/stratagora/backend/internal/handlers"
 )
 
 func main() {
@@ -25,39 +25,68 @@ func main() {
 		port = "8080"
 	}
 
+	// handlers
+	healthHandler := handlers.NewHealthHandler()
+	chessHandler := handlers.NewChessHandler()
+	chesscomHandler := handlers.NewChesscomHandler()
+	claudeHandler := handlers.NewClaudeHandler()
+
 	// creating router through chi
 	router := chi.NewRouter()
 
-
 	// middleware
-	router.Use(middleware.Logger)
+	router.Use(middleware.RequestID)
+	router.Use(middleware.RealIP)
 	router.Use(middleware.Recoverer)
-	// enabling CORS so frontend can call to backend
-	router.Use(cors.Handler(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:3000"},
-		AllowedMethods:   []string{"GET", "POST","PUT","DELETE", "OPTIONS"},
-		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
-		AllowCredentials: true,
-	}))
+	router.Use(custom_middleware.Logger)
+	router.Use(custom_middleware.CORS())
 
-	//routes
-	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		json.NewEncoder(w).Encode(map[string]string{
-			"message": "yo me from the stratagora api!",
-			"status": "perfect, working just fine",
+	//routes health check
+	router.Get("/", healthHandler.Health)
+	router.Get("/health", healthHandler.Health)
+	router.Get("/ping", healthHandler.Ping)
+
+	// api routes
+	router.Route("/api", func(r chi.Router) {
+		// chess analysis routes
+		r.Route("/chess", func(r chi.Router) {
+			r.Post("/analyze", chessHandler.AnalyzeGame)
+			r.Post("/evaluate", chessHandler.EvaluatePosition)
+		})
+
+		// chess.com integration routes
+		r.Route("/chesscom", func(r chi.Router) {
+			r.Post("/games", chesscomHandler.FetchGames)
+		})
+
+		// AI routes
+		r.Route("/claude", func(r chi.Router) {
+			r.Post("/chat", claudeHandler.Chat)
 		})
 	})
-	// checking endpoint if it is working
-	router.Get("/healthy", func(w http.ResponseWriter, r *http.Request) {
-		json.NewEncoder(w).Encode(map[string]string{
-			"status": "perfect, working just fine",
-		})
-	})
 
-	fmt.Printf("server running on port %s\n", port)
+	printRoutes(router)
+
+	// start the server
+	fmt.Printf("\n🚀 Stratagora API Server\n")
+	fmt.Printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n")
+	fmt.Printf("📍 Server running on: http://localhost:%s\n", port)
+	fmt.Printf("🏥 Health check: http://localhost:%s/health\n", port)
+	fmt.Printf("📚 API endpoints: http://localhost:%s/api\n", port)
+	fmt.Printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n")
 	if err := http.ListenAndServe(":"+port, router); err != nil {
 		log.Fatal(err)
 	}
 
+}
 
+func printRoutes(r chi.Router) {
+	walkFunc := func(method string, route string, handler http.Handler, middlewares ...func(http.Handler) http.Handler) error {
+		log.Printf("%-6s %s", method, route)
+		return nil
+	}
+
+	if err := chi.Walk(r, walkFunc); err != nil {
+		log.Printf("Error walking routes: %s\n", err.Error())
+	}
 }

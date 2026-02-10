@@ -20,7 +20,7 @@ func main() {
 		AllowCredentials: true,
 	}))
 
-	// checking emdpoint
+	// checking endpoint
 	router.Get("/health", func(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(map[string]string{
 			"status": "okay!",

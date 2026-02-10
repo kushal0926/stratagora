@@ -65,17 +65,17 @@ export default function SignupPage() {
 
     return (
         <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
-            <div className="flex items-center justify-center p-6 bg-[#f9f6f0]">
+            <div className="flex items-center justify-center p-6 bg-cream">
                 <div className="w-full max-w-md">
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 text-sm text-[#121212] hover:text-gray-400 mb-6"
+                        className="inline-flex items-center gap-2 text-sm text-ink hover:text-gray-400 mb-6"
                     >
                         <ArrowLeft className="w-4 h-4" />
                         Back to home
                     </Link>
 
-                    <Card className="border-0 bg-[#121212] text-[#f9f6f0] rounded-md">
+                    <Card className="border-0 bg-ink text-cream rounded-md">
                         <CardHeader className="space-y-1 text-center">
                             <Logo />
                         </CardHeader>

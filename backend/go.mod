@@ -1,4 +1,4 @@
-module stratagora-backend
+module github.com/kushal0926/stratagora/backend
 
 go 1.25.4
 

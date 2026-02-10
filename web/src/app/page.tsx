@@ -8,7 +8,7 @@ export default async function Home() {
         headers: await headers(),
     });
     return (
-        <div className="min-h-screen text-black bg-[#F9f6F0] space-y-10">
+        <div className="min-h-screen text-black bg-cream space-y-10">
             <Navbar />
             <div className="mt-10">
             <QuickAnalyzeSection isLoggedIn={!!session} />
