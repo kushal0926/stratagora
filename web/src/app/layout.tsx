@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Stratagora",
+  title: "stratagora",
   description: "chess analyzer with built in AI feature",
 };
 

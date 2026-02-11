@@ -1,9 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Logo() {
-    return (
-        <Link href="/">
-            <h1 className="text-3xl logo text-[#55605E]">♟️stratagora</h1>
-        </Link>
-    );
+  return (
+    <Link href="/" className="flex items-center gap-2.5">
+      <h1 className="text-5xl logo text-cream">stratagora</h1>  
+      <Image src="/chess.png" alt="stratagora logo" width={72} height={22} />
+    </Link>
+  );
 }

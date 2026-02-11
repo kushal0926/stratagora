@@ -52,18 +52,18 @@ export default function LoginPage() {
     return (
         <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
             {/* left side */}
-            <div className="flex items-center justify-center p-6 bg-cream">
+            <div className="flex items-center justify-center p-6 bg-kala">
                 <div className="w-full max-w-md">
                     {/* Back to home */}
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 text-sm text-ink hover:text-gray-400 mb-6"
+                        className="inline-flex items-center gap-2 text-sm text-cream hover:text-gray-400 mb-6"
                     >
                         <ArrowLeft className="w-4 h-4" />
                         Back to home
                     </Link>
 
-                    <Card className="border-0 bg-ink text-cream rounded-md">
+                    <Card className="border-0 bg-kala text-cream rounded-md">
                         <CardHeader className="space-y-1 text-center">
                             <Logo />
                         </CardHeader>
@@ -87,7 +87,7 @@ export default function LoginPage() {
                                         }
                                         required
                                         disabled={isLoading}
-                                        className="h-11 bg-transparent text-white border-0 text-sm"
+                                        className="h-11 bg-transparent text-cream border border-white/5 text-sm"
                                     />
                                 </div>
 
@@ -103,7 +103,7 @@ export default function LoginPage() {
                                         }
                                         required
                                         disabled={isLoading}
-                                        className="h-11 bg-transparent text-white border-0 text-sm"
+                                        className="h-11 bg-transparent text-cream border-white/5 text-sm"
                                     />
                                 </div>
                             </CardContent>
@@ -111,20 +111,20 @@ export default function LoginPage() {
                             <CardFooter className="flex flex-col space-y-4">
                                 <Button
                                     type="submit"
-                                    className="w-full h-11 mt-4"
+                                    className="w-full h-11 mt-4 bg-chess text-ink hover:bg-cream font-extrabold"
                                     disabled={isLoading}
                                 >
                                     {isLoading ? (
                                         <>
                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                            Signing in...
+                                            <span className="font-bold">Logging in...</span>
                                         </>
                                     ) : (
-                                        "Sign In"
+                                        <span className="font-bold">Login</span>
                                     )}
                                 </Button>
 
-                                <p className="text-sm text-center text-gray-600 ">
+                                <p className="text-1xl text-center text-gray-400 ">
                                     Don&apos;t have an account?{" "}
                                     <Link
                                         href="/signup"

@@ -39,6 +39,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+
 # Docker
-*.env.docker
-EOF
+.env.docker
+docker-compose.override.yml
+*.log
+
+# Development
+.vscode/
+.idea/

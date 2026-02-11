@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -48,7 +49,7 @@ export default function ApiStatus() {
     }
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-4 ml-50">
             <div className="flex items-center gap-2">
                 <div
                     className={`w-2 h-2 rounded-full ${
