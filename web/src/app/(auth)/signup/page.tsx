@@ -14,7 +14,6 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { ArrowLeft, Loader2 } from "lucide-react";
-import Image from "next/image";
 import Logo from "@/components/logo";
 
 export default function SignupPage() {
@@ -179,14 +178,8 @@ export default function SignupPage() {
       </div>
       {/* right side */}
       <div className="bg-black content p-0 m-0 hidden h-full w-full flex-1 basis-0 flex-col items-center justify-center text-center lg:flex">
-        <Image
-          src="/chessboard.png"
-          alt="chessboard"
-          width={300}
-          height={300}
-        />
         <span className="text-white text-typography-strong max-w-100 text-2xl font-bold mt-10">
-          Sign up to get the AI features
+          Sign up to learn and analyze you chess game with AI by your side!
         </span>
       </div>
     </div>

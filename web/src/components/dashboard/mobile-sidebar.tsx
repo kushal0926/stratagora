@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { signOut } from '@/lib/auth-client';
 import {
   Menu,
   LayoutDashboard,
@@ -27,6 +28,14 @@ const navigation = [
 export default function MobileSidebar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await signOut();
+    setOpen(false);
+    router.push('/login');
+    router.refresh();
+  };
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -68,15 +77,14 @@ export default function MobileSidebar() {
 
           {/* Logout */}
           <div className="border-t p-3">
-            <form action="/api/auth/sign-out" method="POST">
-              <button
-                type="submit"
-                className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                <LogOut className="h-5 w-5" />
-                Logout
-              </button>
-            </form>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              <LogOut className="h-5 w-5" />
+              Logout
+            </button>
           </div>
         </div>
       </SheetContent>

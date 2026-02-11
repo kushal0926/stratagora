@@ -50,10 +50,13 @@
     --lblack: #121212;
     --custom-black: #1C1917;
     --custom-blue: #9C9FE0;
+    --minimal: #262626;
     --color-cream: var(--whitee);
     --color-ink: var(--lblack);
     --color-kala: var(--custom-black);
     --color-chess: var(--custom-blue);
+    --color-minimal: var(--minimal);
+
 
 }
 

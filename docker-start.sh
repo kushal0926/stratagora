@@ -1,15 +1,11 @@
 #!/bin/bash
 
-echo "🐳 Starting Stratagora with Docker..."
+set -euo pipefail
 
-# Load environment variables
-export $(cat .env.docker | xargs)
+COMPOSE_FILES=(-f docker-compose.yaml)
+if [[ "${1:-}" == "--dev" ]]; then
+  COMPOSE_FILES+=(-f docker-compose.dev.yaml)
+fi
 
-# Build and start
-docker-compose build
-docker-compose up -d
-
-echo ""
-echo "✅ Stratagora is running!"
-echo "📍 Frontend: http://localhost:3000"
-echo "📍 Backend:  http://localhost:8080"
+echo "Starting Stratagora with Docker..."
+docker compose "${COMPOSE_FILES[@]}" up -d --build

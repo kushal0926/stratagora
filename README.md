@@ -64,8 +64,15 @@ nano .env.docker
 ./docker-start.sh
 
 # Or manually:
-docker-compose up -d
+docker compose -f docker-compose.yaml up -d
+
+# Start dev mode (hot-reload)
+./docker-start.sh --dev
+# equivalent:
+docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --build
 ```
+
+`--dev` enables live preview for frontend edits in Docker (`web/src/**` changes reload at http://localhost:3000).
 
 ### 4. Access the application
 
@@ -79,7 +86,7 @@ docker-compose up -d
 ./docker-stop.sh
 
 # Or manually:
-docker-compose down
+docker compose -f docker-compose.yaml down
 ```
 
 ## 💻 Development Setup (Without Docker)
@@ -142,7 +149,7 @@ stratagora/
 │   ├── pkg/             # Public packages
 │   └── Dockerfile
 │
-├── docker-compose.yml    # Docker orchestration
+├── docker-compose.yaml   # Docker orchestration
 └── README.md
 ```
 
@@ -172,22 +179,22 @@ stratagora/
 ## 🐳 Docker Commands
 ```bash
 # Build images
-docker-compose build
+docker compose -f docker-compose.yaml build
 
 # Start services
-docker-compose up -d
+docker compose -f docker-compose.yaml up -d
 
 # View logs
-docker-compose logs -f
+docker compose -f docker-compose.yaml logs -f
 
 # Stop services
-docker-compose down
+docker compose -f docker-compose.yaml down
 
 # Rebuild and restart
-docker-compose up -d --build
+docker compose -f docker-compose.yaml up -d --build
 
 # Remove volumes (⚠️ deletes data)
-docker-compose down -v
+docker compose -f docker-compose.yaml down -v
 ```
 
 ## 🧪 Testing
@@ -199,10 +206,10 @@ curl http://localhost:8080/health
 curl http://localhost:3000
 
 # View backend logs
-docker-compose logs backend
+docker compose -f docker-compose.yaml logs backend
 
 # View frontend logs
-docker-compose logs frontend
+docker compose -f docker-compose.yaml logs frontend
 ```
 
 ## 🔧 Troubleshooting
@@ -210,16 +217,16 @@ docker-compose logs frontend
 ### Frontend won't start
 ```bash
 # Check logs
-docker-compose logs frontend
+docker compose -f docker-compose.yaml logs frontend
 
 # Rebuild
-docker-compose up -d --build frontend
+docker compose -f docker-compose.yaml up -d --build frontend
 ```
 
 ### Backend connection issues
 ```bash
 # Check if backend is running
-docker-compose ps
+docker compose -f docker-compose.yaml ps
 
 # Test backend directly
 curl http://localhost:8080/health

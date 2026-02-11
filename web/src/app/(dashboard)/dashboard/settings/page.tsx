@@ -17,41 +17,41 @@ export default async function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-        <p className="text-gray-600 mt-2">
+        <h1 className="text-3xl font-bold text-cream">Settings</h1>
+        <p className="text-gray-400 mt-2">
           Manage your account and preferences
         </p>
       </div>
 
-      <Card>
+      <Card className='bg-minimal border border-white/5 rounded '>
         <CardHeader>
-          <CardTitle>Profile</CardTitle>
-          <CardDescription>Your account information</CardDescription>
+          <CardTitle className='text-cream text-2xl'>Profile</CardTitle>
+          <CardDescription className='text-gray-400'>Your account information</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center gap-4">
             <Avatar className="h-20 w-20">
               <AvatarImage src={session?.user.image || undefined} />
-              <AvatarFallback className="bg-blue-600 text-white text-2xl">
+              <AvatarFallback className="bg-chess text-ink font-bold border text-4xl">
                 {initials}
               </AvatarFallback>
             </Avatar>
             <div>
-              <p className="font-medium text-lg">{session?.user.name}</p>
-              <p className="text-sm text-gray-500">{session?.user.email}</p>
+              <p className="font-bold text-cream text-lg">{session?.user.name}</p>
+              <p className="text-1xl text-cream">{session?.user.email}</p>
             </div>
           </div>
 
           <div className="space-y-2 pt-4 border-t">
             <div className="flex justify-between">
-              <span className="text-gray-600">Email Verified:</span>
-              <span className="font-medium">
+              <span className="text-cream font-bold">Email Verified:</span>
+              <span className="font-bold text-cream">
                 {session?.user.emailVerified ? '✅ Yes' : '❌ No'}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">Member Since:</span>
-              <span className="font-medium">
+              <span className="text-cream font-bold">Member Since:</span>
+              <span className="font-bold text-cream">
                 {new Date(session?.user.createdAt || '').toLocaleDateString()}
               </span>
             </div>
