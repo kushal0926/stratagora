@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import Sidebar from '@/components/dashboard/sidebar';
-import DashboardHeader from '@/components/dashboard/header';
+import MobileSidebar from '@/components/dashboard/mobile-sidebar';
 
 export default async function DashboardLayout({
   children,
@@ -26,7 +26,7 @@ export default async function DashboardLayout({
 
       {/* Main Content */}
       <div className="flex flex-1 flex-col overflow-hidden">
-        <DashboardHeader />
+        <MobileSidebar />
         <main className="flex-1 overflow-y-auto">
           <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
             {children}

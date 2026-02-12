@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
@@ -41,15 +42,24 @@ export default function MobileSidebar() {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu className="h-6 w-6" />
+          <Menu className="h-6 w-6 text-cream" />
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-64 p-0">
-        <div className="flex h-full flex-col bg-white">
+        <div className="flex h-full flex-col bg-kala">
           {/* Logo */}
-          <div className="flex h-16 items-center gap-2 border-b px-6">
-            <span className="text-2xl">♟️</span>
-            <span className="text-xl font-bold">Stratagory</span>
+          <div className="flex items-center p-5">
+            <Link href="/" className="flex items-center gap-2.5">
+              <h1 className="text-3xl logo text-cream hover:text-chess">
+                stratagora
+              </h1>
+              <Image
+                src="/chess.png"
+                alt="stratagora logo"
+                width={62}
+                height={32}
+              />
+            </Link>
           </div>
 
           {/* Navigation */}
@@ -64,8 +74,8 @@ export default function MobileSidebar() {
                   className={cn(
                     'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                     isActive
-                      ? 'bg-blue-50 text-blue-600'
-                      : 'text-gray-700 hover:bg-gray-50'
+                      ? 'bg-chess text-ink'
+                      : 'text-cream hover:bg-gray-50'
                   )}
                 >
                   <item.icon className="h-5 w-5" />
@@ -80,10 +90,10 @@ export default function MobileSidebar() {
             <button
               type="button"
               onClick={handleLogout}
-              className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              className="bg-chess flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-ink hover:bg-gray-50"
             >
               <LogOut className="h-5 w-5" />
-              Logout
+              <span className='font-bold'>Logout</span>
             </button>
           </div>
         </div>

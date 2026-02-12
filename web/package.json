@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/chess.js": "^0.13.7",
     "@types/node": "^20",
     "@types/pg": "^8.16.0",
     "@types/react": "^19",

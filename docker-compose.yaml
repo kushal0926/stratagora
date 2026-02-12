@@ -1,43 +1,43 @@
 services:
-  # Next.js Frontend
-  frontend:
-    build:
-      context: ./web
-      dockerfile: Dockerfile
-    container_name: stratagora-frontend
-    env_file:
-      - .env.docker
-    ports:
-      - "3000:3000"
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-      NEXT_PUBLIC_GO_API_URL: ${NEXT_PUBLIC_GO_API_URL:-http://backend:8080}
-      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
-      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
-      BETTER_AUTH_URL: ${BETTER_AUTH_URL:-http://localhost:3000}
-    depends_on:
-      - backend
-    networks:
-      - stratagora-network
-    restart: unless-stopped
+    # Next.js Frontend
+    frontend:
+        build:
+            context: ./web
+            dockerfile: Dockerfile
+        container_name: stratagora-frontend
+        env_file:
+            - .env.docker
+        ports:
+            - "3000:3000"
+        environment:
+            DATABASE_URL: ${DATABASE_URL}
+            NEXT_PUBLIC_GO_API_URL: ${NEXT_PUBLIC_GO_API_URL:-http://backend:8080}
+            NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+            BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
+            BETTER_AUTH_URL: ${BETTER_AUTH_URL:-http://localhost:3000}
+        depends_on:
+            - backend
+        networks:
+            - stratagora-network
+        restart: unless-stopped
 
-  # Go Backend
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: stratagora-backend
-    env_file:
-      - .env.docker
-    ports:
-      - "8080:8080"
-    environment:
-      PORT: ${PORT:-8080}
-      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
-    networks:
-      - stratagora-network
-    restart: unless-stopped
+    # Go Backend
+    backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        container_name: stratagora-backend
+        env_file:
+            - .env.docker
+        ports:
+            - "8080:8080"
+        environment:
+            PORT: ${PORT:-8080}
+            ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+        networks:
+            - stratagora-network
+        restart: unless-stopped
 
 networks:
-  stratagora-network:
-    driver: bridge
+    stratagora-network:
+        driver: bridge
