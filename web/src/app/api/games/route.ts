@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import prisma from "@/lib/prisma";
 import { parsePGN } from "@/lib/chess-utils";
 
 // GET /api/games - Get user's games
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
 }
 
 // POST /api/games - Save a new game
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),

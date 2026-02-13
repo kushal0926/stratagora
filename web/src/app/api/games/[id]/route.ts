@@ -1,12 +1,12 @@
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
-import prisma from "@/lib/prisma";
+import { NextResponse } from 'next/server';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
+import prisma from '@/lib/prisma';
 
 // GET /api/games/[id] - Get single game
 export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> },
+  _request: Request,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await auth.api.getSession({
@@ -14,7 +14,10 @@ export async function GET(
     });
 
     if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
     }
 
     const { id } = await params;
@@ -27,23 +30,26 @@ export async function GET(
     });
 
     if (!game) {
-      return NextResponse.json({ error: "Game not found" }, { status: 404 });
+      return NextResponse.json(
+        { error: 'Game not found' },
+        { status: 404 }
+      );
     }
 
     return NextResponse.json({ game });
   } catch (error) {
-    console.error("Error fetching game:", error);
+    console.error('Error fetching game:', error);
     return NextResponse.json(
-      { error: "Failed to fetch game" },
-      { status: 500 },
+      { error: 'Failed to fetch game' },
+      { status: 500 }
     );
   }
 }
 
 // DELETE /api/games/[id] - Delete game
 export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> },
+  _request: Request,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await auth.api.getSession({
@@ -51,7 +57,10 @@ export async function DELETE(
     });
 
     if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
     }
 
     const { id } = await params;
@@ -66,17 +75,17 @@ export async function DELETE(
 
     if (game.count === 0) {
       return NextResponse.json(
-        { error: "Game not found or unauthorized" },
-        { status: 404 },
+        { error: 'Game not found or unauthorized' },
+        { status: 404 }
       );
     }
 
-    return NextResponse.json({ message: "Game deleted successfully" });
+    return NextResponse.json({ message: 'Game deleted successfully' });
   } catch (error) {
-    console.error("Error deleting game:", error);
+    console.error('Error deleting game:', error);
     return NextResponse.json(
-      { error: "Failed to delete game" },
-      { status: 500 },
+      { error: 'Failed to delete game' },
+      { status: 500 }
     );
   }
 }
