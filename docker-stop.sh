@@ -7,6 +7,6 @@ if [[ "${1:-}" == "--dev" ]]; then
   COMPOSE_FILES+=(-f docker-compose.dev.yaml)
 fi
 
-echo "Stopping Stratagora..."
+echo "stopping stratagora..."
 docker compose "${COMPOSE_FILES[@]}" down
-echo "Stopped."
+echo "stopped."

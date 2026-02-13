@@ -54,7 +54,8 @@ export const ModelName = {
   User: 'User',
   Account: 'Account',
   Session: 'Session',
-  Verification: 'Verification'
+  Verification: 'Verification',
+  Game: 'Game'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -125,6 +126,28 @@ export const VerificationScalarFieldEnum = {
 } as const
 
 export type VerificationScalarFieldEnum = (typeof VerificationScalarFieldEnum)[keyof typeof VerificationScalarFieldEnum]
+
+
+export const GameScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  pgn: 'pgn',
+  source: 'source',
+  white: 'white',
+  black: 'black',
+  result: 'result',
+  event: 'event',
+  site: 'site',
+  date: 'date',
+  round: 'round',
+  whiteElo: 'whiteElo',
+  blackElo: 'blackElo',
+  opening: 'opening',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GameScalarFieldEnum = (typeof GameScalarFieldEnum)[keyof typeof GameScalarFieldEnum]
 
 
 export const SortOrder = {

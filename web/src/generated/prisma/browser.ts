@@ -37,3 +37,8 @@ export type Session = Prisma.SessionModel
  * 
  */
 export type Verification = Prisma.VerificationModel
+/**
+ * Model Game
+ * 
+ */
+export type Game = Prisma.GameModel

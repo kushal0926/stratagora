@@ -19,6 +19,7 @@ model User {
 
   accounts Account[]
   sessions Session[]
+  games    Game[]
 
   @@index([email])
   @@map("users")
@@ -69,4 +70,36 @@ model Verification {
 
   @@unique([identifier, value])
   @@map("verifications")
+}
+
+// game model
+model Game {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Game metadata
+  pgn    String @db.Text
+  source String @default("upload") // "upload" | "chesscom" | "lichess"
+
+  // Player info
+  white  String
+  black  String
+  result String
+
+  // Optional metadata
+  event    String?
+  site     String?
+  date     String?
+  round    String?
+  whiteElo String? @map("white_elo")
+  blackElo String? @map("black_elo")
+  opening  String?
+
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([userId, createdAt])
+  @@map("game")
 }
