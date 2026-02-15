@@ -169,7 +169,7 @@
     }
 
     .login-btn {
-        @apply cursor-pointer flex items-center text-ink p-2 bg-[#9C9FE0] rounded-full hover:text-black hover:bg-cream
+        @apply cursor-pointer flex items-center text-ink p-2 rounded-full bg-chess hover:text-black hover:bg-cream
     }
 }
 
