@@ -56,6 +56,7 @@ func main() {
 
 		// chess.com integration routes
 		r.Route("/chesscom", func(r chi.Router) {
+			r.Post("/player", chesscomHandler.GetPlayer)
 			r.Post("/games", chesscomHandler.FetchGames)
 		})
 
@@ -68,11 +69,11 @@ func main() {
 	printRoutes(router)
 
 	// start the server
-	fmt.Printf("\n🚀 Stratagora API Server\n")
+	fmt.Printf("\n🚀 stratagora api server\n")
 	fmt.Printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n")
-	fmt.Printf("📍 Server running on: http://localhost:%s\n", port)
-	fmt.Printf("🏥 Health check: http://localhost:%s/health\n", port)
-	fmt.Printf("📚 API endpoints: http://localhost:%s/api\n", port)
+	fmt.Printf("📍 server running on: http://localhost:%s\n", port)
+	fmt.Printf("🏥 health check: http://localhost:%s/health\n", port)
+	fmt.Printf("📚 api endpoints: http://localhost:%s/api\n", port)
 	fmt.Printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n")
 	if err := http.ListenAndServe(":"+port, router); err != nil {
 		log.Fatal(err)

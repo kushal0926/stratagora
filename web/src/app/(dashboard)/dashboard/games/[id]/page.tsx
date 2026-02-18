@@ -31,6 +31,7 @@ export default function GameDetailPage() {
   const [metadata, setMetadata] = useState<PGNMetadata | null>(null);
   const [moves, setMoves] = useState<GameMove[]>([]);
   const [currentMoveIndex, setCurrentMoveIndex] = useState(0);
+  const [pgn, setPgn] = useState<string>('');
 
   useEffect(() => {
     // Move fetchGame inside useEffect
@@ -41,6 +42,7 @@ export default function GameDetailPage() {
         if (!response.ok) throw new Error('Failed to fetch game');
 
         const data = await response.json();
+          setPgn(data.game.pgn); 
         const result = parsePGN(data.game.pgn);
         
         if (result.isValid) {
@@ -171,6 +173,8 @@ export default function GameDetailPage() {
             moves={moves}
             position={currentMoveIndex}
             onPositionChange={setCurrentMoveIndex}
+            pgn={pgn}
+            
           />
         </div>
         <div className="mt-5">

@@ -65,6 +65,8 @@
 
 :root {
     --radius: 0.625rem;
+    --font-geist-sans: "DM Sans", sans-serif;
+    --font-geist-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --whitee: #f9f6f0;
     --lblack: #121212;
     --background: oklch(1 0 0);

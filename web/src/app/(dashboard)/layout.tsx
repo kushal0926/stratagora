@@ -3,8 +3,9 @@ import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import Sidebar from '@/components/dashboard/sidebar';
 import MobileSidebar from '@/components/dashboard/mobile-sidebar';
+import { Suspense } from 'react';
 
-export default async function DashboardLayout({
+async function DashboardLayoutContent({
   children,
 }: {
   children: React.ReactNode;
@@ -23,7 +24,6 @@ export default async function DashboardLayout({
       <aside className="hidden md:flex">
         <Sidebar />
       </aside>
-
       {/* Main Content */}
       <div className="flex flex-1 flex-col overflow-hidden">
         <MobileSidebar />
@@ -34,5 +34,17 @@ export default async function DashboardLayout({
         </main>
       </div>
     </div>
+  );
+}
+
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <Suspense fallback={null}>
+      <DashboardLayoutContent>{children}</DashboardLayoutContent>
+    </Suspense>
   );
 }
