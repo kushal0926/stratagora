@@ -32,21 +32,13 @@ export default function QuickAnalyzeSection({
     <Card className="max-w-4xl mx-auto bg-minimal border border-white/5 text-black space-y-5">
       <CardContent>
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-3 rounded-xl mb-5 ">
+          <TabsList className="grid w-full grid-cols-2 rounded-xl mb-5 ">
             <TabsTrigger
               value="chesscom"
               className="flex items-center justify-center rounded-xl data-[state=active]:bg-chess  data-[state=active]:text-ink"
             >
               <Image src="/chess.svg" alt="" width={18} height={18} />
               <span className="hidden sm:inline font-bold">chess.com</span>
-            </TabsTrigger>
-
-            <TabsTrigger
-              value="lichess"
-              className="flex items-center justify-center gap-2 rounded-lg data-[state=active]:bg-chess data-[state=active]:text-ink"
-            >
-              <Image src="lichess.svg" alt="" width={18} height={18} />
-              <span className="hidden sm:inline font-bold">lichess</span>
             </TabsTrigger>
 
             <TabsTrigger
@@ -83,40 +75,6 @@ export default function QuickAnalyzeSection({
               ) : (
                 <>
                   <ExternalLink className="h-4 w-4 text-ink" />
-                  <span className="font-bold text-ink">
-                    Fetch & Analyze Games
-                  </span>
-                </>
-              )}
-            </Button>
-          </TabsContent>
-
-          {/* Lichess Tab */}
-          <TabsContent value="lichess" className="space-y-4">
-            <div className="space-y-2">
-              <Label className="text-md font-bold text-gray-400">
-                <span className="text-cream">lichess</span> username
-              </Label>
-              <Input
-                placeholder="enter your lichess username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="p-5 bg-transparent text-cream border border-white/10 text-sm"
-              />
-            </div>
-            <Button
-              onClick={handleAnalyze}
-              className="w-full p-5 bg-chess"
-              disabled={!username || isLoading}
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin text-ink" />
-                  <span className="font-bold text-ink">Fetching Games...</span>
-                </>
-              ) : (
-                <>
-                  <ExternalLink className=" h-4 w-4 text-ink" />
                   <span className="font-bold text-ink">
                     Fetch & Analyze Games
                   </span>

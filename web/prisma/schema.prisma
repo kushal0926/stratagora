@@ -80,7 +80,10 @@ model Game {
 
   // Game metadata
   pgn    String @db.Text
-  source String @default("upload") // "upload" | "chesscom" | "lichess"
+  source String @default("upload") // "upload" | "chesscom" 
+  
+  // chess.com specific
+  chesscomUrl String? @unique @map("chesscom_url")
 
   // Player info
   white  String
@@ -101,5 +104,6 @@ model Game {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@index([userId, createdAt])
+  @@index([chesscomUrl])
   @@map("game")
 }

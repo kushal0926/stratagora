@@ -133,6 +133,7 @@ export const GameScalarFieldEnum = {
   userId: 'userId',
   pgn: 'pgn',
   source: 'source',
+  chesscomUrl: 'chesscomUrl',
   white: 'white',
   black: 'black',
   result: 'result',
