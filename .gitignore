@@ -44,6 +44,7 @@ yarn-error.log*
 .env.docker
 docker-compose.override.yml
 *.log
+.env*
 
 # Development
 .vscode/
