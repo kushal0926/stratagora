@@ -49,3 +49,9 @@ docker-compose.override.yml
 # Development
 .vscode/
 .idea/
+
+#docker
+docker-logs.sh
+docker-stop.sh
+docker-start.sh
+
