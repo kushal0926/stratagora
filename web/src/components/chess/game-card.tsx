@@ -3,7 +3,6 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Trash2, Eye } from "lucide-react";
-import Link from "next/link";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -29,9 +28,10 @@ interface GameCardProps {
     createdAt: Date;
   };
   onDelete: (id: string) => void;
+  onView: (id: string) => void;
 }
 
-export default function GameCard({ game, onDelete }: GameCardProps) {
+export default function GameCard({ game, onDelete, onView }: GameCardProps) {
   const getResultColor = (result: string) => {
     if (result === "1-0") return "text-green-500";
     if (result === "0-1") return "text-red-500";
@@ -92,12 +92,13 @@ export default function GameCard({ game, onDelete }: GameCardProps) {
         </div>
 
         <div className="flex gap-2 pt-2">
-          <Link href={`/dashboard/games/${game.id}`} className="flex-1">
-            <Button className="w-full bg-chess text-ink font-bold hover:bg-cream gap-2">
-              <Eye className="w-4 h-4" />
-              View Game
-            </Button>
-          </Link>
+          <Button
+            onClick={() => onView(game.id)}
+            className="flex-1 bg-chess text-ink font-bold hover:bg-cream gap-2"
+          >
+            <Eye className="w-4 h-4" />
+            View Game
+          </Button>
 
           <AlertDialog>
             <AlertDialogTrigger asChild>

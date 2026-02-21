@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -9,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Upload, ExternalLink, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { Label } from "./ui/label";
+import { toast } from "sonner";
 
 export default function QuickAnalyzeSection({
   isLoggedIn,
@@ -23,7 +23,7 @@ export default function QuickAnalyzeSection({
     setIsLoading(true);
     // TODO: Implement analysis logic (Day 8+)
     setTimeout(() => {
-      alert("Analysis feature coming soon! This will work without login.");
+      toast.info("Analysis feature coming soon. This will work without login.");
       setIsLoading(false);
     }, 1000);
   };
